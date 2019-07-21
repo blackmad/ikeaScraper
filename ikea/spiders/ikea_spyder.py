@@ -8,7 +8,7 @@ class IkeaSpider(CrawlSpider):
     name = "ikea"
     allowed_domains = ["ikea.com"]
     start_urls = [
-        "http://www.ikea.com/es/es/catalog/allproducts/",
+        "https://www.ikea.com/us/en/catalog/allproducts/department/",
         #"http://www.ikea.com/es/es/catalog/categories/departments/workspaces/16195/",
         #"http://www.ikea.com/es/es/catalog/products/S19903730/index.html/"
     ]
@@ -46,7 +46,7 @@ class IkeaSpider(CrawlSpider):
         item['item_id'] = sel.xpath('/html/head/meta[@name="item_id"]/@content').extract()
         item['partnumber'] = sel.xpath('/html/head/meta[@name="partnumber"]/@content').extract()
         item['url'] = response.url
-        item['image'] = sel.xpath('/html/head/meta[@name="image"]/@content').extract()
+        item['image'] = sel.xpath('/html/head/link[@rel="image_src"]/@href').extract()
         #print item
         return item
 
