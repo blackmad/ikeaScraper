@@ -8,6 +8,8 @@ var substringMatcher = function(ikeaProducts) {
     // regex used to determine if a string contains the substring `q`
     substrRegex = new RegExp(q, 'i');
 
+    console.log(q)
+
     // iterate through the pool of strings and for any string that
     // contains the substring `q`, add it to the `matches` array
     $.each(ikeaProducts, function(i, product) {
@@ -20,20 +22,27 @@ var substringMatcher = function(ikeaProducts) {
   };
 };
 
-$('#the-basics .typeahead').typeahead({
-  hint: true,
-  highlight: true,
-  minLength: 1
-},
-{
-  name: 'ikeaProducts',
-  source: substringMatcher(ikeaProducts),
-   templates: {
-    empty: [
-      '<div class="empty-message">',
-        'unable to find any Best Picture winners that match the current query',
-      '</div>'
-    ].join('\n'),
-    suggestion: Handlebars.compile('<div><strong>{{value}}</strong> – {{title}} {{name}} {{price}}</div>')
+// console.log(ikeaProducts)
+
+const matcher = substringMatcher(ikeaProducts)
+
+$('.search').keydown((q) => {
+  if (q.length < 2) {
+    return;
   }
-});
+  query = q.currentTarget.value;
+  console.log(query);
+  
+
+  const  cb = (results) => {
+    const $resultsDiv = $('.results');
+    $resultsDiv.empty()
+
+    results.forEach((result) => {
+      $resultsDiv.append($(`<div>${result.title}<img src="${result.images[0]}"/></div>`))
+    })
+  }
+
+  matcher(query, cb);
+})
+ 

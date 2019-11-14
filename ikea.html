@@ -4,17 +4,27 @@
   src="https://code.jquery.com/jquery-3.4.1.js"
   integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
   crossorigin="anonymous"></script>
-	
+
+
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.4.2/handlebars.js"></script>
+
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-typeahead/2.10.6/jquery.typeahead.js"></script>
 	<style href="https://cdnjs.cloudflare.com/ajax/libs/jquery-typeahead/2.10.6/jquery.typeahead.css"></style>
-
 	</head>
+	<style>
+		img {
+			width: 100px;
+		}
+	</style>
 <body>
-	<script src="dumb/combined-products.js"></script>
+	<input class="search" type="text">
+	<div class="results"></div>
+
+	<script src="dumb/combined-data.js"></script>
 	<script src="demo-ikea.js"></script>
 
-	<div id="the-basics">
-	  <input class="typeahead" type="text" placeholder="States of USA">
-	</div>
+	
+	  
+	
 </body>
 </html>
